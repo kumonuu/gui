@@ -2,16 +2,15 @@ import tkinter, calendar
 
 def test():
     cl = calendar.calendar(int(entry.get()))
-    print(cl)
     clscreen = tkinter.Tk()
     clscreen.title("Calendar")
     clscreen.geometry('300x300')
 
-    cldisplay = tkinter.Text(clscreen,width=100,height=100,fg="red")
-    cldisplay.pack(side='left')
+    cldisplay = tkinter.Text(clscreen,width=100,height=10,fg="red")
+    cldisplay.pack(side='left',expand=True)
     cldisplay.insert(tkinter.END,chars=cl)
 
-    scrollbar = tkinter.Scrollbar(clscreen,command=cldisplay.yview)
+    scrollbar = tkinter.Scrollbar(clscreen,command=cldisplay.yview, orient=tkinter.VERTICAL)
     scrollbar.pack(side='right',fill='y')
     cldisplay.config(yscrollcommand=scrollbar.set)
 
