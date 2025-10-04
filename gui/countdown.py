@@ -1,10 +1,16 @@
 import tkinter as tk
 import time
+from tkinter import messagebox
 
 def set_countdown():
+    button["state"] = "disabled"
     second = secsvar.get()
     minute = minsvar.get()
     hour = hoursvar.get()
+
+    hours.configure(state="readonly")
+    mins.configure(state="readonly")
+    secs.configure(state="readonly")
 
     second = int(second)
     minuteAsSecond = int(minute) * 60
@@ -19,6 +25,7 @@ def set_countdown():
         minsvar.set('{:02d}'.format(minute))
         secsvar.set('{:02d}'.format(second))
         screen.update()
+    messagebox.showinfo("Time's up!", "The timer has reached zero.")
 
 screen = tk.Tk()
 screen.title("Countdown")
