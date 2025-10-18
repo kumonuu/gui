@@ -9,6 +9,8 @@ screen.geometry("500x500")
 addresses = {}
 
 def open_book():
+    global addresses
+    reset()
     file = askopenfile()
     if file:
         addresses = eval(file.read())
@@ -65,7 +67,10 @@ def clear_entries():
 
 #reset function clears entries, deletes dicts
 def reset():
-    pass
+    addresses = {}
+    clear_entries()
+    listbox.delete(0,tk.END)
+    
 
 def display(event):
     screen2 = tk.Tk()
@@ -73,12 +78,13 @@ def display(event):
     index = listbox.curselection()
     if index:
         item = listbox.get(index)
+        print(addresses)
         addressVal = addresses[item][0]
         mobileVal = addresses[item][1]
         emailVal = addresses[item][2]
         bdayVal = addresses[item][3]
         info = tk.Label(screen2,text=f"{item}\nAddress: {addressVal}\nMobile: {mobileVal}\nEmail: {emailVal}\nBirthday: {bdayVal}")
-        info.place(x=50,y=50)
+        info.place(x=70,y=50)
 
 name = tk.Label(screen,text="Name:").place(x=270,y=80)
 address = tk.Label(screen,text="Address:").place(x=270,y=130)
@@ -103,9 +109,8 @@ editBtn = tk.Button(screen,text="Edit",command=edit).place(x=20,y=330)
 deleteBtn = tk.Button(screen,text="Delete",command=delete).place(x=80,y=330)
 saveBtn = tk.Button(screen,text="Save",width=50,command=save).place(x=60,y=380)
 
-listbox = tk.Listbox(screen,width=30,height=15)
+listbox = tk.Listbox(screen,width=39,height=18)
 listbox.place(x=20,y=30)
 listbox.bind('<<ListboxSelect>>',display)
-
 
 screen.mainloop()
