@@ -71,7 +71,6 @@ def reset():
     clear_entries()
     listbox.delete(0,tk.END)
     
-
 def display(event):
     screen2 = tk.Tk()
     screen2.title("Display")
