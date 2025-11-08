@@ -23,7 +23,7 @@ def save():
     text = text_input.get(1.0,tk.END)
     try:
         file = asksaveasfilename(defaultextension='.txt')
-        if file.endswith('.py'):
+        if not file.endswith('.txt'):
             raise ValueError("Wrong file extension")
     except ValueError as e:
         messagebox.showerror("Bad file","Could not save file: " + str(e))
@@ -31,16 +31,13 @@ def save():
     print(text,file=file)
         
 
-title = tk.Label(screen,text="Voice Notepad",font="bold,20")
-title.place(x=320,y=50)
+title = tk.Label(screen,text="Voice Notepad",font="bold,20").place(x=320,y=50)
 
 text_input = tk.Text(screen,width=30,height=5)
 text_input.place(x=290,y=200)
 
-save_btn = tk.Button(screen,text="Save the Text",width=20,command=save)
-save_btn.place(x=550,y=200)
+save_btn = tk.Button(screen,text="Save the Text",width=20,command=save).place(x=550,y=200)
 
-record_btn = tk.Button(screen,text="Click on me!..\nTo start recording",command=record)
-record_btn.place(x=160,y=200)
+record_btn = tk.Button(screen,text="Click on me!..\nTo start recording",command=record).place(x=160,y=200)
 
 screen.mainloop()
