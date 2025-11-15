@@ -1,17 +1,21 @@
 import tkinter as tk
 import random as rd
+import wonderwords as ww
 from tkinter import messagebox
+from wonderwords import RandomWord
 
 screen = tk.Tk()
 screen.title("Jumbled word game")
 screen.geometry("500x500")
 
-words = ["discipline","complex","shareholder","cemetery","basketball"]
+words = []
 jumbled_words = []
 score = 0
 
-def choose_word():
-    return rd.choice(words)
+for i in range(10):
+    word = RandomWord().word(word_min_length=5,word_max_length=12)
+    print(word)
+    words.append(word)
 
 def jumble(word):
     random_word = rd.sample(word,len(word))
@@ -55,13 +59,13 @@ title.place(x=140,y=10)
 text_input = tk.Text(frame,width=25,height=3)
 text_input.place(x=150,y=150)
 
-word_display = tk.Label(frame,bg="black",fg="white",font="bold,40",text=jumbled_word)
-word_display.place(x=165,y=70)
+word_display = tk.Label(frame,bg="black",fg="white",font="bold,40",text=jumbled_word,justify="center")
+word_display.place(x=170,y=70)
 
 score_display = tk.Label(frame,bg="black",fg="white",font="bold,40",text="Score: " + str(score))
 score_display.place(x=10,y=470)
 
 check_btn = tk.Button(frame,width=10,height=1,text="Check",command=check)
-check_btn.place(x=200,y=240)
+check_btn.place(x=210,y=240)
 
 screen.mainloop()
